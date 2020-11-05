@@ -97,3 +97,56 @@ old html
         text-align: right;
         
     }
+
+
+
+
+    const table = document.getElementsByClassName('table');
+const context = canvas.getcontext('2d');
+context.fillStyle = 'red';
+context.fillRect(100,200,50,75);
+context.fillStyle = 'orange';
+context.beginPath();
+context.arc(300,350,100,0, Math.PI*2, false);
+context.closePath();
+context.fill();
+
+function drawBox(x,y,w,h,color){
+    ctx.fillStyle = color;
+    ctx.fillRect()
+}
+
+function drawBall(x,y,r,color){
+    ctx.fillStyle;
+    ctx.beginPath();
+    ctx.arc()
+    ctx.closePath()
+    ctx.fill();
+}
+
+function drawText(text,x,y,color){
+    ctx.fillStyle = color;
+    ctx.fillText(text,x,y);
+
+
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Pong Switcharoo</title>
+</head>
+<body>
+   <canvas class="table"> </canvas>
+
+   <script src="app.js"></script>
+</body>
+</html>
+
+
+.table{
+    width: 600px;
+    height: 500px;
+}
