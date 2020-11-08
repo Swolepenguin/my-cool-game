@@ -13,7 +13,7 @@ const ball = {
 
 
 const human = {
-    x : 0,
+    x : 0, 
     y : (canvas.height - 100)/2, 
     width : 10,
     height : 100,
@@ -23,7 +23,7 @@ const human = {
 
 
 const AI = {
-    x : canvas.width - 10, 
+    x : canvas.width - 10,
     y : (canvas.height - 100)/2,
     width : 10,
     height : 100,
@@ -40,7 +40,7 @@ const net = {
     color : "purple"
 }
 //for paddles
-function drawRect(x, y, w, h, color){
+function paddles(x, y, w, h, color){
     ctx.fillStyle = color;
     ctx.fillRect(x, y, w, h);
 }
@@ -70,7 +70,7 @@ function resetBall(){
 //the net
 function drawNet(){
     for(let i = 0; i <= canvas.height; i+=15){
-        drawRect(net.x, net.y + i, net.width, net.height, net.color);
+        paddles(net.x, net.y + i, net.width, net.height, net.color);
     }
 }
 
@@ -101,17 +101,18 @@ function update(){
     }else if( ball.x + ball.radius > canvas.width){
         human.score++;
         resetBall();
-}
+}   
 ball.x += ball.velocityX;
 ball.y += ball.velocityY;
-AI.y += ((ball.y - (AI.y + AI.height/2)))*0.1;
+AI.y += ((ball.y - (AI.y + AI.height/2)))*0.1;    
 if(ball.y - ball.radius < 0 || ball.y + ball.radius > canvas.height){
-    ball.velocityY = -ball.velocityY;    
+    ball.velocityY = -ball.velocityY;
 }
 let player = (ball.x + ball.radius < canvas.width/2) ? human : AI;
-if(collision(ball,human)){
-    let collidePoint = (ball.y - (human.y + human.height/2));
-    collidePoint = collidePoint / (human.height/2);
+    
+if(collision(ball,player)){
+    let collidePoint = (ball.y - (player.y + player.height/2));
+    collidePoint = collidePoint / (player.height/2);
     let angleRad = (Math.PI/4) * collidePoint;
     let direction = (ball.x + ball.radius < canvas.width/2) ? 1 : -1;
     ball.velocityX = direction * ball.speed * Math.cos(angleRad);
@@ -120,15 +121,15 @@ if(collision(ball,human)){
     }
 }
 function render(){
-    drawRect(0, 0, canvas.width, canvas.height, "#000");
+    paddles(0, 0, canvas.width, canvas.height, "#000");
     drawText(human.score,canvas.width/4,canvas.height/5);
     drawText(AI.score,3*canvas.width/4,canvas.height/5);
     drawNet();
-    drawRect(human.x, human.y, human.width, human.height, human.color);
-    drawRect(AI.x, AI.y, AI.width, AI.height, AI.color);
+    paddles(human.x, human.y, human.width, human.height, human.color);
+    paddles(AI.x, AI.y, AI.width, AI.height, AI.color);
     drawArc(ball.x, ball.y, ball.radius, ball.color);
 }
-    
+
 function game(){
     update();
     render();
