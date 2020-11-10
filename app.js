@@ -1,9 +1,8 @@
 const canvas = document.getElementById("table");
 const ctx = canvas.getContext('2d');
-const winner = document.getElementsByClassName('winner');
 const reset = document.getElementById("reset")
 const statement = document.querySelector('.statement')
-//const win = document.createElement('p')
+
 
 console.log(statement)
 const ball = {
@@ -46,7 +45,7 @@ const net = {
     width : 2,
     color : "purple"
 }
-//for paddles
+//draws the board
 function paddles(x, y, w, h, color){
     ctx.fillStyle = color;
     ctx.fillRect(x, y, w, h);
@@ -74,7 +73,7 @@ function resetBall(){
     ball.velocityX = -ball.velocityX;
     ball.speed = 7;
 }
-//the net
+//draws the objects
 function drawNet(){
     for(let i = 0; i <= canvas.height; i+=15){
         paddles(net.x, net.y + i, net.width, net.height, net.color);
