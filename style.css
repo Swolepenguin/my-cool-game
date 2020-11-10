@@ -10,3 +10,24 @@ body{
     left:0;
     bottom:0;
 }
+.table::after{
+    content:"";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+#reset{
+    color: darkblue;
+    background-color: black;
+    height: 50px;
+    width: 50px;
+}
+p{
+    color: goldenrod;
+   font-size: 100px;
+   align-items: flex-end;
+}

@@ -1,6 +1,11 @@
 const canvas = document.getElementById("table");
 const ctx = canvas.getContext('2d');
+const winner = document.getElementsByClassName('winner');
+const reset = document.getElementById("reset")
+const statement = document.querySelector('.statement')
+//const win = document.createElement('p')
 
+console.log(statement)
 const ball = {
     x : canvas.width/2,
     y : canvas.height/2,
@@ -18,7 +23,8 @@ const human = {
     width : 10,
     height : 100,
     score : 0,
-    color : "orange"
+    color : "orange",
+    paddle : 'player'
 }
 
 
@@ -28,7 +34,8 @@ const AI = {
     width : 10,
     height : 100,
     score : 0,
-    color : "orange"
+    color : "orange",
+    paddle: 'CPU'
 }
 
 
@@ -97,11 +104,25 @@ function collision(b,p){
 function update(){
     if( ball.x - ball.radius < 0 ){
         AI.score++;
-        resetBall();
+        checkWinner(AI)
     }else if( ball.x + ball.radius > canvas.width){
         human.score++;
-        resetBall();
-}   
+        checkWinner(human)
+}  
+
+function checkWinner(player) {
+    resetBall();
+    if (player.score >= 10) {
+        delete ball.speed;
+        const newElement = document.createElement('p');
+
+        newElement.textContent = `${player.paddle} wins!`;
+        statement.appendChild(newElement);
+    }
+}
+
+
+
 ball.x += ball.velocityX;
 ball.y += ball.velocityY;
 AI.y += ((ball.y - (AI.y + AI.height/2)))*0.1;    
@@ -134,6 +155,10 @@ function game(){
     update();
     render();
 }
+reset.addEventListener('click',function(){
+    window.location.reload()
+    console.log(reset)
+})
 
 let framePerSecond = 100;
 let loop = setInterval(game,1000/framePerSecond);
