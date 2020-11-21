@@ -14,3 +14,27 @@ p{
    font-size: 100px;
    align-items: flex-end;
 }
+
+#table{
+    padding: 0;
+    margin: auto;
+    display: block;
+    width: 800px;
+    height: 400px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+}
+
+#inst{
+    color: goldenrod;
+    text-align: center;
+
+}
+#instruction{
+    color: goldenrod;
+    text-align: center;
+}

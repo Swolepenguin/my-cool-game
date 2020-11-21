@@ -66,6 +66,8 @@ function getMousePos(evt){
     
     human.y = evt.clientY - rect.top - human.height/2;
 }
+let AILevel = 0.1;
+AI.y += (ball.y - (AI.y+AI.height/2))*AILevel; 
 //ball reset
 function resetBall(){
     ball.x = canvas.width/2;
